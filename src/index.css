@@ -1,68 +1,179 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  @font-face {
+    font-family: "DM Sans";
+    src: url("/src/assets/fonts/DMSans-Regular.ttf") format("truetype");
+  }
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #020618;
+  --card: #ffffff;
+  --card-foreground: #020618;
+  --popover: #ffffff;
+  --popover-foreground: #020618;
+  --primary: #ea580c;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172b;
+  --muted: #f1f5f9;
+  --muted-foreground: #90a1b9;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172b;
+  --destructive: #e7000b;
+  --destructive-foreground: #f8fafc;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #020618;
+  --chart-1: #f54a00;
+  --chart-2: #009689;
+  --chart-3: #104e64;
+  --chart-4: #ffba00;
+  --chart-5: #ff6900;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172b;
+  --sidebar-primary: #0f172b;
+  --sidebar-primary-foreground: #f8fafc;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172b;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #90a1b9;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --success: #ecfdf5;
+  --success-button: #009966;
+  --success-border-new: #a4f4cf;
+  --success-description: #00bc7d;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  --info: #eff6ff;
+  --info-button: #155dfc;
+  --info-border-new: #bedbff;
+  --info-description: #2b7fff;
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+  --warning: #fffbeb;
+  --warning-button: #e17100;
+  --warning-border-new: #fee685;
+  --warning-description: #fd9a00;
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  --error: #fef2f2;
+  --error-button: #e7000b;
+  --error-border-new: #ffc9c9;
+  --error-description: #fb2c36;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.dark {
+  --background: #020618;
+  --foreground: #ffffff;
+  --card: #020618;
+  --card-foreground: #ffffff;
+  --popover: #020618;
+  --popover-foreground: #ffffff;
+  --primary: #ea580c;
+  --primary-foreground: #ffffff;
+  --secondary: #1d293d;
+  --secondary-foreground: #f1f5f9;
+  --muted: #314158;
+  --muted-foreground: #cad5e2;
+  --accent: #1d293d;
+  --accent-foreground: #f1f5f9;
+  --destructive: #e7000b;
+  --destructive-foreground: #f8fafc;
+  --border: #314158;
+  --input: #1d293d;
+  --ring: #ffffff;
+  --chart-1: #f54a00;
+  --chart-2: #009689;
+  --chart-3: #104e64;
+  --chart-4: #ffba00;
+  --chart-5: #ff6900;
+  --sidebar: #020618;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #0f172b;
+  --sidebar-accent: #1d293d;
+  --sidebar-accent-foreground: #f1f5f9;
+  --sidebar-border: #45556c;
+  --sidebar-ring: #45556c;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@theme inline {
+  --radius-xs: calc(var(--radius) - 8px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-success-button: var(--success-button);
+  --color-success-description: var(--success-description);
+
+  --color-info-button: var(--info-button);
+  --color-info-description: var(--info-description);
+
+  --color-warning-button: var(--warning-button);
+  --color-warning-description: var(--warning-description);
+
+  --color-error-button: var(--error-button);
+  --color-error-description: var(--error-description);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-  a:hover {
-    color: #747bff;
+  body {
+    @apply bg-background text-foreground;
+    font-family: "DM Sans", sans-serif;
   }
-  button {
-    background-color: #f9f9f9;
+  h1 {
+    @apply text-4xl font-extrabold;
+  }
+  h2 {
+    @apply text-3xl font-semibold;
+  }
+  h3 {
+    @apply text-2xl font-semibold;
+  }
+  h4 {
+    @apply text-xl font-semibold;
+  }
+  blockquote {
+    @apply italic;
   }
 }
