@@ -1,11 +1,15 @@
-import type { Framework } from "~/framework/framework";
+import type { ViewerAPI } from "../framework/ViewerAPI";
 
 export abstract class AbstractClient {
-  protected framework: Framework;
+  protected ViewerAPI: ViewerAPI;
 
-  constructor(framework: Framework) {
-    this.framework = framework;
+  constructor(framework: ViewerAPI) {
+    this.ViewerAPI = framework;
     this.init();
+
+    // framework.on(FrameworkEvents.EntitySelected, (guid) => {
+    //   get entity with guid
+    // });
   }
 
   protected abstract init(): void;
