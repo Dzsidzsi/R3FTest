@@ -31,7 +31,7 @@ export class ViewerAPI {
     this.listeners.get(event)?.delete(callback);
   }
 
-  /** @internal */ //TODO - set flag somewhere 😎
+  /** @internal */ //TODO - set flag somewhere
   fire<T extends FrameworkEventType>(
     event: T,
     payload: FrameworkEventPayloads[T]
@@ -47,7 +47,6 @@ export class ViewerAPI {
     // Could be hooked into your real parameter UI
   }
 
-  // Example exposed action API
   Actions = {
     Selection: {
       PickPoints: (count: number): Promise<THREE.Vector3[]> => {
@@ -92,7 +91,6 @@ export class ViewerAPI {
     },
   };
 
-  // Example geometry insertion API
   AddEntities(json: string) {
     const object = JSON.parse(json);
     if (object.children) {
