@@ -3,7 +3,7 @@ import { Demo } from "../demo/Demo";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
+    { title: "Dijkstra Viewer" },
     { name: "description", content: "Welcome to React Router!" },
   ];
 }

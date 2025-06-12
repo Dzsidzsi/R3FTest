@@ -6,6 +6,7 @@ import {
 } from "./Events";
 import { BufferGeometryUtils } from "three/examples/jsm/Addons.js";
 import type { AEntity } from "./internal/AEntity";
+import { Polygon } from "./internal/Polygon";
 
 type EventCallback<T> = (payload: T) => void;
 
@@ -30,8 +31,7 @@ export class ViewerAPI {
     this.listeners.get(event)?.delete(callback);
   }
 
-  /** @internal */
-   
+  /** @internal */ //TODO - set flag somewhere 😎
   fire<T extends FrameworkEventType>(
     event: T,
     payload: FrameworkEventPayloads[T]
@@ -41,8 +41,6 @@ export class ViewerAPI {
       ?.forEach((cb) => (cb as EventCallback<any>)(payload));
   }
   //#endregion
-
-  //TODO - geometry operations (merge, add, remove, update)
 
   displayParameters(guid: string, parameters: Record<string, any>) {
     console.log("Displaying parameters for", guid, parameters);
@@ -97,16 +95,12 @@ export class ViewerAPI {
   // Example geometry insertion API
   AddEntities(json: string) {
     const object = JSON.parse(json);
-    this.#innerEntities.set(object.guid, object);
-
-    const geometries = [];
     if (object.children) {
       for (const child of object.children) {
         child.parent = object.guid;
         this.#innerEntities.set(child.guid, child);
 
         const geometry = new THREE.BufferGeometry();
-
         const arr = [];
         for (let i = 0; i < child.vertices.length - 3; i += 3) {
           arr.push(child.vertices[0], child.vertices[1], child.vertices[2]);
@@ -126,9 +120,16 @@ export class ViewerAPI {
           "position",
           new THREE.Float32BufferAttribute(arr, 3)
         );
-        geometries.push(geometry);
+        const polygon = new Polygon(child.guid);
+        polygon.Geometry = geometry;
+        this.#innerEntities.set(child.guid, polygon);
       }
     }
+    const geometries: THREE.BufferGeometry[] = [];
+    this.#innerEntities.forEach((entity) => {
+      if (entity instanceof Polygon && entity.Geometry)
+        geometries.push(entity.Geometry);
+    });
     const merged = BufferGeometryUtils.mergeGeometries(geometries);
     this.fire(FrameworkEvents.SceneUpdated, { geometry: merged });
     //TODO - calculate new geometry
