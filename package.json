@@ -1,6 +1,6 @@
 {
   "name": "@dzsidzsi/r3ftest",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "type": "module",
   "private": false,
   "publishConfig": {
@@ -34,33 +34,27 @@
     "dist"
   ],
   "scripts": {
-    "build": "react-router build",
-    "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc",
     "release": "standard-version && git push --follow-tags && npm publish"
   },
   "dependencies": {
-    "@react-router/node": "^7.5.3",
-    "@react-router/serve": "^7.5.3",
     "@react-three/drei": "^10.2.0",
     "@react-three/fiber": "^9.1.2",
-    "isbot": "^5.1.27",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router": "^7.5.3",
     "three": "^0.177.0",
     "vite-plugin-dts": "^4.5.4"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.5.3",
-    "@tailwindcss/vite": "^4.1.4",
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "@types/three": "^0.177.0",
+    "@types/three": "^0.152.1",
+    "@vitejs/plugin-react": "^4.2.1",
     "standard-version": "^9.5.0",
-    "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.3",
     "vite-tsconfig-paths": "^5.1.4"
