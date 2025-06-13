@@ -1,6 +1,6 @@
 {
   "name": "@dzsidzsi/r3ftest",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "private": false,
   "publishConfig": {
@@ -20,6 +20,26 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./build/client/index.es.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./build/client/index.cjs.js"
+      },
+      "default": {
+        "types": "./dist/index.d.ts",
+        "default": "./build/client/index.cjs.js"
+      }
+    },
+    "./renderer": {
+      "types": "./dist/renderer/index.d.ts",
+      "import": "./build/client/index.es.js",
+      "require": "./build/client/index.cjs.js"
+    },
+    "./framework": {
+      "types": "./dist/framework/index.d.ts",
       "import": "./build/client/index.es.js",
       "require": "./build/client/index.cjs.js"
     },
@@ -33,12 +53,13 @@
     "dist"
   ],
   "scripts": {
-    "build": "react-router build",
+    "build": "react-router build && npm run generate-types && npm run fix-exports",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "release": "standard-version && git push --follow-tags && npm publish",
-    "generate-types": "tsc -p tsconfig.build.json"
+    "generate-types": "tsc -p tsconfig.build.json",
+    "fix-exports": "node fix-exports.js"
   },
   "dependencies": {
     "@react-router/node": "^7.5.3",
