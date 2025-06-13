@@ -1,65 +1,42 @@
 {
   "name": "@dzsidzsi/r3ftest",
-  "version": "0.0.8",
+  "version": "0.0.9",
+  "description": "Base Interface for Developers for Dijkstra CAD Apps",
   "type": "module",
+  "main": "./build/index.cjs.js",
+  "module": "./build/index.esm.js",
+  "types": "./build/types/index.d.ts",
+  "style": "build/styles.css",
   "private": false,
+  "files": [
+    "build"
+  ],
+  "exports": {
+    ".": {
+      "import": "./build/index.esm.js",
+      "require": "./build/index.cjs.js",
+      "types": "./build/types/index.d.ts"
+    },
+    "./styles.css": {
+      "default": "./build/styles.css",
+      "require": "./build/styles.css"
+    }
+  },
   "publishConfig": {
     "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
-  "description": "React Three Fiber Test",
-  "homepage": "https://github.com/Dzsidzsi/R3FTest",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dzsidzsi/R3FTest.git"
   },
-  "main": "./build/client/index.cjs.js",
-  "module": "./build/client/index.es.js",
-  "types": "./dist/index.d.ts",
-  "style": "./build/client/r3ftest.css",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./build/client/index.es.js"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./build/client/index.cjs.js"
-      },
-      "default": {
-        "types": "./dist/index.d.ts",
-        "default": "./build/client/index.cjs.js"
-      }
-    },
-    "./renderer": {
-      "types": "./dist/renderer/index.d.ts",
-      "import": "./build/client/index.es.js",
-      "require": "./build/client/index.cjs.js"
-    },
-    "./framework": {
-      "types": "./dist/framework/index.d.ts",
-      "import": "./build/client/index.es.js",
-      "require": "./build/client/index.cjs.js"
-    },
-    "./styles.css": {
-      "require": "./build/client/r3ftest.css",
-      "default": "./build/client/r3ftest.css"
-    }
-  },
-  "files": [
-    "build",
-    "dist"
-  ],
+  "homepage": "https://github.com/Dzsidzsi/R3FTest",
   "scripts": {
-    "build": "react-router build && npm run generate-types && npm run fix-exports",
+    "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
-    "release": "standard-version && git push --follow-tags && npm publish",
-    "generate-types": "tsc -p tsconfig.build.json",
-    "fix-exports": "node fix-exports.js"
+    "release": "standard-version && git push --follow-tags && npm publish"
   },
   "dependencies": {
     "@react-router/node": "^7.5.3",
