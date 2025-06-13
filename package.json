@@ -1,6 +1,6 @@
 {
   "name": "@dzsidzsi/r3ftest",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "type": "module",
   "private": false,
   "publishConfig": {
@@ -8,6 +8,9 @@
     "registry": "https://npm.pkg.github.com"
   },
   "description": "React Three Fiber Test",
+  "types": "./dist/types/index.d.ts",
+  "declaration": true,
+  "declarationDir": "dist/types",
   "homepage": "https://github.com/Dzsidzsi/R3FTest",
   "repository": {
     "type": "git",
@@ -15,13 +18,12 @@
   },
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
-  "types": "./dist/index.d.ts",
   "style": "./dist/r3ftest.css",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
+      "require": "./dist/index.umd.js",
+      "types": "./dist/types/index.d.ts"
     },
     "./styles.css": {
       "require": "./dist/styles.css",
@@ -29,7 +31,6 @@
     }
   },
   "files": [
-    "build",
     "dist"
   ],
   "scripts": {
