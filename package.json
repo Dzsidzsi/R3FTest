@@ -1,6 +1,6 @@
 {
   "name": "@dzsidzsi/r3ftest",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "type": "module",
   "private": false,
   "publishConfig": {
@@ -21,9 +21,9 @@
   "style": "./dist/r3ftest.css",
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
+      "types": "./dist/types/index.d.ts",
       "require": "./dist/index.umd.js",
-      "types": "./dist/types/index.d.ts"
+      "import": "./dist/index.es.js"
     },
     "./styles.css": {
       "require": "./dist/styles.css",
