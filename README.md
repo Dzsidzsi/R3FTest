@@ -85,3 +85,8 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 ---
 
 Built with ❤️ using React Router.
+
+
+
+@dzsidzsi:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken="YOUR_GITHUB_TOKEN_WITH_READ_PERMISSION"
